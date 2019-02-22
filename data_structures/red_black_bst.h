@@ -1,8 +1,8 @@
 //
 //  red_black_bst.h
-//  Algorithms-CPP
+//  Algorithms
 //
-//  Created by zl on 2019/2/20.
+//  Created by longjianjiang on 2019/2/20.
 //  Copyright © 2019 longjianjiang. All rights reserved.
 //
 

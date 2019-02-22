@@ -1,5 +1,10 @@
-
-
+//
+//  main.cpp
+//  Algorithms
+//
+//  Created by longjianjiang on 2019/2/20.
+//  Copyright © 2019 longjianjiang. All rights reserved.
+//
 
 #include <iostream>
 
