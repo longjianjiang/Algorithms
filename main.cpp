@@ -11,6 +11,9 @@
 #include "data_structures/binary_search_tree.h"
 #include "data_structures/red_black_bst.h"
 
+#include "algorithms/bubble_sort.h"
+#include "algorithms/selection_sort.h"
+
 using namespace jiang;
 
 int main() {
