@@ -14,6 +14,7 @@
 #include "algorithms/bubble_sort.h"
 #include "algorithms/selection_sort.h"
 #include "algorithms/insertion_sort.h"
+#include "algorithms/heap_sort.h"
 
 using namespace jiang;
 
@@ -29,13 +30,13 @@ int main() {
   std::cout << "==================\n";
 
 
-  insertion_sort<int>(v);
+  heap_sort<int>(v);
   for (auto num: v) {
   	std::cout << num << " ";
   }
   std::cout << "==================\n";
 
-  insertion_sort<int>(v, false);
+  heap_sort<int>(v, false);
   for (auto num: v) {
   	std::cout << num << " ";
   }
