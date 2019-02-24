@@ -13,6 +13,7 @@
 
 #include "algorithms/bubble_sort.h"
 #include "algorithms/selection_sort.h"
+#include "algorithms/insertion_sort.h"
 
 using namespace jiang;
 
@@ -21,4 +22,22 @@ int main() {
 
   std::cout << "Testing red black bst<int>" << std::endl;
 
+  std::vector<int> v = {1, 5, 2, 7, 3};
+  for (auto num: v) {
+  	std::cout << num << " ";
+  }
+  std::cout << "==================\n";
+
+
+  insertion_sort<int>(v);
+  for (auto num: v) {
+  	std::cout << num << " ";
+  }
+  std::cout << "==================\n";
+
+  insertion_sort<int>(v, false);
+  for (auto num: v) {
+  	std::cout << num << " ";
+  }
+  std::cout << "==================\n";
 }
