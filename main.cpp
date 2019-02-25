@@ -42,4 +42,15 @@ int main() {
   	std::cout << num << " ";
   }
   std::cout << "==================\n";
+
+  doubly_linked_list<int> head = doubly_linked_list<int>();
+  head.insert(2);
+  head.insert(1);
+  head.insert(3);
+  head.insert(5);
+  head.insert(4);
+
+  head.show();
+  head.bubble_sort_list();
+  head.show();
 }

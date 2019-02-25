@@ -36,6 +36,9 @@ namespace jiang {
 		virtual bool remove(const T& data);
 		virtual bool remove_node(doubly_linked_list_node<T> *node);
 		virtual size_t get_num_nodes();
+
+		virtual void show();
+		virtual void bubble_sort_list();
 	
 	protected:
 		size_t num_nodes;
@@ -46,6 +49,39 @@ namespace jiang {
 		virtual void free_list(doubly_linked_list_node<T> *node);
 		virtual void delete_node(doubly_linked_list_node<T> *node);
 	};
+
+	// Debug Methods
+	template <typename T>
+	void doubly_linked_list<T>::show() {
+		doubly_linked_list_node<T> *cur = get_head();
+		while (cur != nullptr) {
+			std::cout << cur->data << " ";
+			cur = cur->next;
+		}
+		std::cout << "\n";
+	}
+
+	template <typename T>
+	void doubly_linked_list<T>::bubble_sort_list() {
+		if (get_head() == nullptr) { return; }
+		doubly_linked_list_node<T> *left = nullptr, *right = nullptr;
+		bool swapped = false;
+
+		do
+		{
+			swapped = false;
+			left = get_head();
+			while (left->next != right) {
+				if (left->data > left->next->data) {
+					std::swap(left->data, left->next->data);
+					swapped = true;
+				}
+				left = left->next;
+			}
+
+			right = left;
+		} while (swapped);
+	}
 
 	// Public Methods
 	template <typename T>
