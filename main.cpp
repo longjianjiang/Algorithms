@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include "data_structures/doubly_linked_list.h"
 #include "data_structures/binary_search_tree.h"
 #include "data_structures/red_black_bst.h"
 
