@@ -129,7 +129,7 @@ namespace jiang {
     bst_node<T> *
     binary_search_tree<T>::create_node(const T &data, bst_node<T> *parent) {
         try {
-            bst_node<T> *node = (bst_node<T> *)calloc(sizeof(bst_node<T>), 1);
+            bst_node<T> *node = (bst_node<T> *)calloc(1, sizeof(bst_node<T>));
             node->data = data;
             node->parent = parent;
             return node;

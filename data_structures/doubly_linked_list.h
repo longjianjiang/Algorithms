@@ -209,7 +209,7 @@ namespace jiang {
 	template <typename T>
 	doubly_linked_list_node<T>* doubly_linked_list<T>::create_node(const T& data, doubly_linked_list_node<T>* parent) {
 		try {
-			doubly_linked_list_node<T>* new_node = (doubly_linked_list_node<T> *)calloc(sizeof(doubly_linked_list_node<T>), 1);
+			doubly_linked_list_node<T>* new_node = (doubly_linked_list_node<T> *)calloc(1, sizeof(doubly_linked_list_node<T>));
 			new_node->data = data;
 			if (parent != nullptr) {
 				parent->next = new_node;

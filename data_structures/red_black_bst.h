@@ -70,7 +70,7 @@ namespace jiang {
     bst_node<T> *
     red_black_tree<T>::create_node(const T &data, bst_node<T> *parent) {
         try {
-            rb_bst_node<T> *node = (rb_bst_node<T> *)calloc(sizeof(rb_bst_node<T>), 1);
+            rb_bst_node<T> *node = (rb_bst_node<T> *)calloc(1, sizeof(rb_bst_node<T>));
             node->data = data;
             node->parent = parent;
             return node;
