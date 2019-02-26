@@ -22,7 +22,7 @@ namespace jiang {
 		~queue();
 
 		void push(const T& data);
-		void pop();
+		T pop();
 		T back();
 		T front();
 		bool empty();
@@ -72,7 +72,7 @@ namespace jiang {
 	void queue<T>::push(const T& data) {
 		if (contents < capacity) {
 			arr[contents] = data;
-			contents++;
+            ++contents;
 		} else {
 			throw enqueueing_full_queue();
 		}
@@ -124,7 +124,7 @@ namespace jiang {
     		T tmp = arr[0];
     		int idx = 1;
     		while (idx < contents) {
-    			arr[i-1] = arr[i];
+    			arr[idx-1] = arr[idx];
     			++idx;
     		}
     		--contents;
