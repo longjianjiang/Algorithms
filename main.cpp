@@ -10,6 +10,7 @@
 
 #include "data_structures/queue.h"
 #include "data_structures/circular_queue.h"
+#include "data_structures/double_ended_queue.h"
 #include "data_structures/doubly_linked_list.h"
 #include "data_structures/binary_search_tree.h"
 #include "data_structures/red_black_bst.h"
@@ -57,30 +58,26 @@ int main() {
   head.show();
 
   std::cout << "==================\n";
-  
-  queue<int> q = queue<int>(5);
-  q.push(1);
-  q.push(3);
-  q.push(5);
 
-  std::cout << q.front() << std::endl;
-  std::cout << q.back() << std::endl;
-  q.pop();
+  double_ended_queue<int> dp = double_ended_queue<int>();
+  dp.push_back(1);
+  dp.push_front(2);
+  dp.push_back(5);
+  dp.push_front(7);
 
-  std::cout << q.front() << std::endl;
-  std::cout << q.back() << std::endl;
+  // 7 2 1 5
+  std::cout << dp.front() << std::endl;
+  std::cout << dp.back() << std::endl;
 
-  std::cout << "==================\n";
+  dp.pop_front();
+  dp.pop_back();
 
-  circular_queue<int> cq = circular_queue<int>(5);
-  cq.push(1);
-  cq.push(3);
-  cq.push(5);
+  std::cout << dp.front() << std::endl;
+  std::cout << dp.back() << std::endl;
 
-  std::cout << cq.front() << std::endl;
-  std::cout << cq.back() << std::endl;
-  cq.pop();
+  dp.pop_front();
+  dp.pop_back();
 
-  std::cout << cq.front() << std::endl;
-  std::cout << cq.back() << std::endl;
+  std::cout << dp.front() << std::endl;
+  std::cout << dp.back() << std::endl;
 }
