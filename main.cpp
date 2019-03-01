@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+#include "data_structures/stack.h"
 #include "data_structures/queue.h"
 #include "data_structures/circular_queue.h"
 #include "data_structures/double_ended_queue.h"
@@ -45,39 +46,4 @@ int main() {
   	std::cout << num << " ";
   }
   std::cout << "==================\n";
-
-  doubly_linked_list<int> head = doubly_linked_list<int>();
-  head.insert(2);
-  head.insert(1);
-  head.insert(3);
-  head.insert(5);
-  head.insert(4);
-
-  head.show();
-  head.bubble_sort_list();
-  head.show();
-
-  std::cout << "==================\n";
-
-  double_ended_queue<int> dp = double_ended_queue<int>();
-  dp.push_back(1);
-  dp.push_front(2);
-  dp.push_back(5);
-  dp.push_front(7);
-
-  // 7 2 1 5
-  std::cout << dp.front() << std::endl;
-  std::cout << dp.back() << std::endl;
-
-  dp.pop_front();
-  dp.pop_back();
-
-  std::cout << dp.front() << std::endl;
-  std::cout << dp.back() << std::endl;
-
-  dp.pop_front();
-  dp.pop_back();
-
-  std::cout << dp.front() << std::endl;
-  std::cout << dp.back() << std::endl;
 }

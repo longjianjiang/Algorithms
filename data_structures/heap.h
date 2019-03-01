@@ -24,7 +24,7 @@ namespace jiang {
 
 		void push(const T& data);
 		T pop();
-		T peak();
+		T top();
 		bool empty();
 		bool full();
 
@@ -114,23 +114,23 @@ namespace jiang {
 		}
 	}
 
-#ifndef PEAKING_EMPTY_HEAP
-#define PEAKING_EMPTY_HEAP 
+#ifndef PEEKING_EMPTY_HEAP
+#define PEEKING_EMPTY_HEAP 
 
-	struct peaking_empty_heap : public std::exception {
+	struct peeking_empty_heap : public std::exception {
 		const char* what() const throw() {
-			return "Unbale to peak into an empty heap.";
+			return "Unbale to peek into an empty heap.";
 		}
 	};
 
-#endif /* PEAKING_EMPTY_HEAP */ 
+#endif /* PEEKING_EMPTY_HEAP */ 
 
 	template <typename T>
-	T heap<T>::peak() {
+	T heap<T>::top() {
 		if (contents > 0) {
 			return arr[0];
 		} else {
-			throw peaking_empty_heap();
+			throw peeking_empty_heap();
 		}
 	}
 
