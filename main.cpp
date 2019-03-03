@@ -12,6 +12,7 @@
 #include "data_structures/queue.h"
 #include "data_structures/circular_queue.h"
 #include "data_structures/double_ended_queue.h"
+#include "data_structures/blocking_queue.h"
 #include "data_structures/doubly_linked_list.h"
 #include "data_structures/binary_search_tree.h"
 #include "data_structures/red_black_bst.h"
