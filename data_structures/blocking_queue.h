@@ -39,7 +39,7 @@ namespace jiang {
 		void pop(reference data);
 		bool try_pop(reference data);
 		bool empty() const;
-		size_type size();// const { return _queue.size(); }
+		size_type size() const;
 	};
 
     template <typename T, typename Container>
@@ -85,11 +85,11 @@ namespace jiang {
 		return _queue.empty();
 	}
 
-	// template <typename T, typename Container>
-	// size_type blocking_queue<T, Container>::size() const {
-	// 	std::lock_guard<mutex_type> lock(_mutex);
-	// 	return _queue.size();
-	// }
+	template <typename T, typename Container>
+	typename Container::size_type blocking_queue<T, Container>::size() const {
+		std::lock_guard<mutex_type> lock(_mutex);
+		return _queue.size();
+	}
 
 }
 #endif /* blocking_queue_h */
