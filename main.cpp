@@ -16,6 +16,7 @@
 #include "data_structures/doubly_linked_list.h"
 #include "data_structures/binary_search_tree.h"
 #include "data_structures/red_black_bst.h"
+#include "data_structures/binary_indexed_tree.h"
 
 #include "algorithms/bubble_sort.h"
 #include "algorithms/selection_sort.h"
@@ -24,27 +25,19 @@
 
 using namespace jiang;
 
+void unit_test_bit() {
+    int nums1[] = {1, 2, 3, 4, 5};
+    jiang::binary_indexed_tree<int> bit1{nums1, sizeof(nums1)/sizeof(nums1[0])};
+    assert(bit1.get_sum_until(4) == 15);
+    bit1.show();
+
+    bit1.update(4, 2);
+    bit1.show();
+    assert(bit1.get_sum_until(4) == 17);
+
+    assert(bit1.get_sum_range(1, 3) == 9);
+}
+
 int main() {
-  std::cout << "Testing binary search tree<int>" << std::endl;
-
-  std::cout << "Testing red black bst<int>" << std::endl;
-
-  std::vector<int> v = {1, 5, 2, 7, 3};
-  for (auto num: v) {
-  	std::cout << num << " ";
-  }
-  std::cout << "==================\n";
-
-
-  heap_sort<int>(v);
-  for (auto num: v) {
-  	std::cout << num << " ";
-  }
-  std::cout << "==================\n";
-
-  heap_sort<int>(v, false);
-  for (auto num: v) {
-  	std::cout << num << " ";
-  }
-  std::cout << "==================\n";
+  unit_test_bit();
 }
