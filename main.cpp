@@ -31,7 +31,7 @@ void unit_test_bit() {
     assert(bit1.get_sum_until(4) == 15);
     bit1.show();
 
-    bit1.update(4, 2);
+    bit1.update(4, 7);
     bit1.show();
     assert(bit1.get_sum_until(4) == 17);
 

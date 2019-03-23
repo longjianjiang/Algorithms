@@ -23,11 +23,10 @@ namespace jiang {
         virtual void update(size_t leaf_index, const T& update_value);
         virtual T get_sum_until(size_t leaf_index);
         virtual T get_sum_range(size_t from, size_t end);
-        void show();
+        virtual void show();
     protected:
-        T *arr;
+        T *arr, *data;
         size_t capacity;
-
         T initial_value() { return 0; }
         T null_value() { return 0; }
     };
@@ -36,9 +35,11 @@ namespace jiang {
     binary_indexed_tree<T>::binary_indexed_tree(size_t nsize) {
         if (nsize) {
             arr = (T *)calloc(nsize+1, sizeof(T));
-            capacity = nsize + 1;
+            data = (T *)calloc(nsize, sizeof(T));
+            capacity = nsize+1;
         } else {
             arr = nullptr;
+            data = nullptr;
             capacity = 0;
         }
     }
@@ -47,12 +48,14 @@ namespace jiang {
     binary_indexed_tree<T>::binary_indexed_tree(T *arr, size_t nsize) {
         if (nsize) {
             this->arr = (T *)calloc(nsize+1, sizeof(T));
-            capacity = nsize + 1;
+            data = (T *)calloc(nsize, sizeof(T));
+            capacity = nsize+1;
             for (size_t i = 0; i < nsize; ++i) {
                 update(i, arr[i]);
             }
         } else {
             this->arr = nullptr;
+            data = nullptr;
             capacity = 0;
         }
     }
@@ -62,6 +65,8 @@ namespace jiang {
         if (arr) {
             free(arr);
             arr = nullptr;
+            free(data);
+            data = nullptr;
             capacity = 0;
         }
     }
@@ -69,11 +74,13 @@ namespace jiang {
     template <typename T>
     void binary_indexed_tree<T>::update(size_t leaf_index, const T &update_value) {
         if (arr && leaf_index+1 < capacity) {
+            T diff = update_value - data[leaf_index];
             size_t idx = leaf_index+1;
             while (idx < capacity) {
-                arr[idx] += update_value;
+                arr[idx] += diff;
                 idx += idx & (-idx);
             }
+            data[leaf_index] = update_value;
         }
     }
 
