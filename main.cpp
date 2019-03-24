@@ -17,6 +17,7 @@
 #include "data_structures/binary_search_tree.h"
 #include "data_structures/red_black_bst.h"
 #include "data_structures/binary_indexed_tree.h"
+#include "data_structures/segment_tree.h"
 
 #include "algorithms/bubble_sort.h"
 #include "algorithms/selection_sort.h"
@@ -38,6 +39,15 @@ void unit_test_bit() {
     assert(bit1.get_sum_range(1, 3) == 9);
 }
 
+void unit_test_st() {
+	int nums1[] = {1, 2, 3, 4, 5};
+    jiang::segment_tree<int> st1{nums1, sizeof(nums1)/sizeof(nums1[0])};
+    assert(st1.get_sum_range(1, 3) == 9);
+    st1.update(4, 2);
+    assert(st1.get_sum_range(3, 4) == 11);
+}
+
 int main() {
   unit_test_bit();
+  unit_test_st();
 }
