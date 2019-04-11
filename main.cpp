@@ -23,28 +23,29 @@
 #include "algorithms/selection_sort.h"
 #include "algorithms/insertion_sort.h"
 #include "algorithms/heap_sort.h"
+#include "algorithms/merge_sort.h"
 
 using namespace jiang;
 
 void unit_test_bit() {
-    int nums1[] = {1, 2, 3, 4, 5};
-    jiang::binary_indexed_tree<int> bit1{nums1, sizeof(nums1)/sizeof(nums1[0])};
-    assert(bit1.get_sum_until(4) == 15);
-    bit1.show();
+  int nums1[] = {1, 2, 3, 4, 5};
+  jiang::binary_indexed_tree<int> bit1{nums1, sizeof(nums1)/sizeof(nums1[0])};
+  assert(bit1.get_sum_until(4) == 15);
+  bit1.show();
 
-    bit1.update(4, 7);
-    bit1.show();
-    assert(bit1.get_sum_until(4) == 17);
+  bit1.update(4, 7);
+  bit1.show();
+  assert(bit1.get_sum_until(4) == 17);
 
-    assert(bit1.get_sum_range(1, 3) == 9);
+  assert(bit1.get_sum_range(1, 3) == 9);
 }
 
 void unit_test_st() {
-	int nums1[] = {1, 2, 3, 4, 5};
-    jiang::segment_tree<int> st1{nums1, sizeof(nums1)/sizeof(nums1[0])};
-    assert(st1.get_sum_range(1, 3) == 9);
-    st1.update(4, 2);
-    assert(st1.get_sum_range(3, 4) == 11);
+  int nums1[] = {1, 2, 3, 4, 5};
+  jiang::segment_tree<int> st1{nums1, sizeof(nums1)/sizeof(nums1[0])};
+  assert(st1.get_sum_range(1, 3) == 9);
+  st1.update(4, 2);
+  assert(st1.get_sum_range(3, 4) == 11);
 }
 
 int main() {
