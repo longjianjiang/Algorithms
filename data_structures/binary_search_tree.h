@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <exception>
+#include "...algorithms/heap_sort.h"
 
 namespace jiang {
 
@@ -32,14 +33,20 @@ namespace jiang {
         virtual void destroy_node(bst_node<T> *node);
 
         virtual void remove(bst_node<T> *node);
+        virtual bst_node<T> *make_balanced_tree(const std::vector<T>& arr);
+
+        void print_preorder_results(bst_node<T> *node);
+        void print_inorder_results(bst_node<T> *node);
+        void print_postorder_results(bst_node<T> *node);
+        void print_levelorder_results(bst_node<T> *node);
 
     public:
-        static const int INORDER = 0;
-        static const int PREORDER = 1;
+        static const int PREORDER = 0;
+        static const int INORDER = 1;
         static const int POSTORDER = 2;
         static const int LEVELORDER = 3;
 
-        binary_search_tree(T *arr, size_t size);
+        binary_search_tree(const std::vector<T>& arr);
         binary_search_tree():root(nullptr), size(0) {}
         ~binary_search_tree();
 
@@ -47,11 +54,16 @@ namespace jiang {
         virtual bst_node<T> *find(const T& data) const;
         virtual bool remove(const T& data);
         void clear();
-//        virtual void print_traversal_results(int traversal_type = binary_search_tree<T>::INORDER, bst_node<T> *node = nullptr);
+        void print_traversal_results(int traversal_type = binary_search_tree<T>::PREORDER, bst_node<T> *node = nullptr);
 
     };
 
-    // Public Method
+    template <typename T>
+    binary_search_tree<T>::binary_search_tree(const std::vector<T>& arr) {
+        heap_sort(arr);
+        root = make_balanced_tree(arr);
+    }
+
     template<typename T>
     binary_search_tree<T>::~binary_search_tree() {
         clear();
@@ -147,6 +159,7 @@ namespace jiang {
         }
     }
 
+
     template<typename T>
     void binary_search_tree<T>::remove(bst_node<T> *node) {
         if (node == nullptr) { return; }
@@ -206,6 +219,113 @@ namespace jiang {
             }
             node->data = tmp->data;
             remove(tmp);
+        }
+    }
+
+
+    template <typename T>
+    void binary_search_tree<T>::print_traversal_results(int traversal_type = binary_search_tree<T>::PREORDER, bst_node<T> *node) {
+        if (node == nullptr) { node = root; }
+
+        switch (traversal_type) {
+            case binary_search_tree<T>::PREORDER:
+                print_preorder_results(node);
+                break;
+            case binary_search_tree<T>::INORDER:
+                print_inorder_results(node);
+                break;
+            case binary_search_tree<T>::POSTORDER:
+                print_postorder_results(node);
+                break;
+            case binary_search_tree<T>::LEVELORDER:
+                print_levelorder_results(node);
+                break;
+        }
+    }
+
+    template <typename T>
+    void binary_search_tree<T>::print_preorder_results(bst_node<T> *node) {
+        if (node == nullptr) { return; }
+        std::stack<bst_node<T> *> s;
+        s.push(node);
+        while (!s.empty()) {
+            bst_node<T> *top = s.top();
+            std::cout << top->data << " ";
+            s.pop();
+            if (top->right) { s.push(top->right); }
+            if (top->left) { s.push(top->left); }
+        }
+    }
+
+    template <typename T>
+    void binary_search_tree<T>::print_inorder_results(bst_node<T> *node) {
+        if (node == nullptr) { return; }
+
+        std::stack<bst_node<T> *> s;
+        bst_node<T> *pointer = node;
+        while (!s.empty() || pointer) {
+            if (pointer) {
+                s.push(pointer);
+                pointer = pointer->left;
+            } else {
+                pointer = s.top();
+                std::cout << pointer->data << " ";
+                s.pop();
+                pointer = pointer->right;
+            }
+        }
+    }
+
+    template <typename T>
+    void binary_search_tree<T>::print_postorder_results(bst_node<T> *node) {
+        if (node == nullptr) { return; }
+
+        std::stack<bst_node<T> *> s;
+        bst_node<T> *pointer = node;
+
+        while (pointer) {
+            s.push(pointer);
+            pointer = pointer->left;
+        }
+
+        while (!s.empty()) {
+            bool left_visited = false, right_visited = false;
+
+            if (pointer && s.top()->left == pointer) {
+                left_visited = true;
+            } else if (pointer && s.top()->right == pointer) {
+                left_visited = true;
+                right_visited = true;
+            }
+
+            pointer = s.top();
+
+            if (pointer->left && !left_visited) {
+                s.push(pointer->left);
+            } else if (pointer->right && !right_visited) {
+                s.push(pointer->right);
+            } else {
+                s.pop();
+                std::cout << pointer->data << " ";
+            }
+        }
+    }
+
+    template <typename T>
+    void binary_search_tree<T>::print_levelorder_results(bst_node<T> *node) {
+        if (node == nullptr) { return; }
+
+        std::queue<bst_node<T> *> q;
+        bst_node<T> *cur;
+        q.push(node);
+
+        while (!q.empty()) {
+            cur = q.front();
+            q.pop();
+            std::cout << cur->data << " ";
+
+            if (cur->left) { q.push(cur->left); }
+            if (cur->right) { q.push(cur->right); }
         }
     }
 }

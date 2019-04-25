@@ -19,7 +19,7 @@ namespace jiang {
 	class heap {
 	public:
 		heap(int nsize = DEFAULT_HEAP_SIZE, bool is_max_heap = true);
-		heap(std::vector<T>& arr, bool is_max_heap = true);
+		heap(const std::vector<T>& arr, bool is_max_heap = true);
 		~heap();
 
 		void push(const T& data);
