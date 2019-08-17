@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+/*
 #include "data_structures/stack.h"
 #include "data_structures/queue.h"
 #include "data_structures/circular_queue.h"
@@ -24,9 +25,12 @@
 #include "algorithms/insertion_sort.h"
 #include "algorithms/heap_sort.h"
 #include "algorithms/merge_sort.h"
+*/
+#include "algorithms/fibonacci.h"
 
 using namespace jiang;
 
+/*
 void unit_test_bit() {
   int nums1[] = {1, 2, 3, 4, 5};
   jiang::binary_indexed_tree<int> bit1{nums1, sizeof(nums1)/sizeof(nums1[0])};
@@ -47,8 +51,14 @@ void unit_test_st() {
   st1.update(4, 2);
   assert(st1.get_sum_range(3, 4) == 11);
 }
+*/
+
+void unit_test_fibonacci() {
+	assert(jiang::fibonacci_logn(3) == 3);
+	assert(jiang::fibonacci_logn(4) == 5);
+	assert(jiang::fibonacci_logn(5) == 8);
+}
 
 int main() {
-  unit_test_bit();
-  unit_test_st();
+  unit_test_fibonacci();
 }

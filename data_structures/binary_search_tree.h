@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <exception>
-#include "...algorithms/heap_sort.h"
+#include "../algorithms/heap_sort.h"
 
 namespace jiang {
 
