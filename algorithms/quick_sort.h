@@ -30,13 +30,43 @@ namespace jiang {
 		}
 	}
 
-	void quick_sort(vector<int>& nums, int left, int right) {
+	void quick_sort_hoare_swap(vector<int>& nums, int left, int right) {
 		if (left >= right) { return; }
 
 		int pivot = partition_hoare_swap(nums, left, right);
 		quick_sort(nums, left, p);
 		quick_sort(nums, p+1, right);
 	}
+
+	/**********************************************************************************************/
+
+	int partition_lomuto(vector<int>& nums, int left, int right) {
+		int pivot = nums[right];
+		int i = left;
+		// pos i point to num greater than pivot
+		for (int j = left; j < right; ++j) {
+			if (nums[j] < pivot) {
+				if (i != j) { swap(nums[i], nums[j]); }
+				++i;
+			}
+		}
+
+		if (i == right) {
+			return i-1;
+		} else {
+			swap(nums[i], nums[right]);
+			return i;
+		}
+	}
+
+	void quick_sort_lomuto(vector<int>& nums, int left, int right) {
+		if (left >= right) { return; }
+
+		int pivot = partition_lomuto(nums, left, right);
+		quick_sort(nums, left, p);
+		quick_sort(nums, p+1, right);
+	}
+
 }
 
 #endif /* quick_sort_h */
