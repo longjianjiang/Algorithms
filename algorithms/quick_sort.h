@@ -67,6 +67,36 @@ namespace jiang {
 		quick_sort(nums, p+1, right);
 	}
 
+	/**********************************************************************************************/
+
+	// partition的目的在于选择一个pivot，完成之后，数组以pivot为界，划分为两部分，左边小于等于，右边大于等于。
+	int partition_intuition(vector<int>& nums, int left, int right) {
+		int pivot = nums[left];
+		int pos = left;
+
+		for (int i = left+1; i <= right; ++i) {
+			if (nums[i] < pivot) {
+				++pos;
+				if (i != pos) { swap(nums[i], nums[pos]); }
+			}
+		}
+		swap(nums[left], nums[pos]);
+		return pos;
+	}
+
+	
+	// 使用双指针，所谓的空穴；
+	int partition_two_pointer(vector<int>& nums, int left, int right) {
+		int pivot = list[left];
+		while (left < right) {
+			while (left < right && list[right] >= pivot) {  --right; }
+			if (left < right) { list[left] = list[right]; }
+			while (left < right && list[left] <= pivot) { ++left; }
+			if (left < right) { list[right] = list[left]; }
+		}
+		list[left] = pivot;
+		return left;
+	}
 }
 
 #endif /* quick_sort_h */
